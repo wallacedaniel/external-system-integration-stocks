@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Portfolio__c</fullName>
+    <description>Portfolio to which this stock holding belongs</description>
+    <externalId>false</externalId>
+    <label>Client Portfolio</label>
+    <referenceTo>Client_Portfolio__c</referenceTo>
+    <relationshipLabel>Stock Holdings</relationshipLabel>
+    <relationshipName>Stock_Holdings</relationshipName>
+    <type>Lookup</type>
+</CustomField>

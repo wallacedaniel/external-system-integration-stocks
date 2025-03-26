@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Client_Portfolio__c</members>
+        <members>Stock_Holding__c</members>
+        <members>Integration_Log__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Client_Portfolio__c.Name</members>
+        <members>Client_Portfolio__c.Description__c</members>
+        <members>Client_Portfolio__c.Active__c</members>
+        
+        <members>Stock_Holding__c.Name</members>
+        <members>Stock_Holding__c.Client_Portfolio__c</members>
+        <members>Stock_Holding__c.Company_Name__c</members>
+        <members>Stock_Holding__c.Quantity__c</members>
+        <members>Stock_Holding__c.Purchase_Price__c</members>
+        <members>Stock_Holding__c.Current_Price__c</members>
+        <members>Stock_Holding__c.Last_Updated__c</members>
+        <members>Stock_Holding__c.Change_Percentage__c</members>
+        <members>Stock_Holding__c.Market_Value__c</members>
+        <members>Stock_Holding__c.Profit_Loss__c</members>
+        
+        <members>Integration_Log__c.Name</members>
+        <members>Integration_Log__c.Integration_Type__c</members>
+        <members>Integration_Log__c.Status__c</members>
+        <members>Integration_Log__c.Request__c</members>
+        <members>Integration_Log__c.Response__c</members>
+        <members>Integration_Log__c.Error_Message__c</members>
+        <members>Integration_Log__c.Created_Date__c</members>
+        <name>CustomField</name>
+    </types>
+    <version>61.0</version>
+</Package>

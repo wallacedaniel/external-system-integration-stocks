@@ -1,18 +1,113 @@
-# Salesforce DX Project: Next Steps
+Salesforce Weather and Stock Integration
+Overview
+This project demonstrates a comprehensive API integration system between Salesforce and external services, featuring two main components:
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Weather Tracking System
 
-## How Do You Plan to Deploy Your Changes?
+Pulls weather data for office locations
+Sends notifications for extreme weather events
+Scheduled and on-demand updates
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
 
-## Configure Your Salesforce DX Project
+Stock Portfolio Management
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+Real-time stock price updates
+Price change notifications
+REST API for external system integration
 
-## Read All About It
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+
+Custom Objects
+Office_Location__c
+
+Tracks office locations with geographic coordinates
+Fields: Name, City__c, Country__c, Latitude__c, Longitude__c, Active__c
+
+Weather_Data__c
+
+Stores weather conditions for office locations
+Fields: Office_Location__c, Temperature__c, Weather_Condition__c, Humidity__c, Wind_Speed__c, Last_Updated__c, Weather_Date__c, Is_Extreme_Weather__c
+
+Stock_Holding__c
+
+Manages stock portfolio entries
+Fields: Name (Stock Symbol), Company_Name__c, Current_Price__c, Purchase_Price__c, Quantity__c, Client_Portfolio__c, Last_Updated__c
+
+Integration_Log__c
+
+Comprehensive logging system for all API interactions
+Fields: Integration_Type__c, Status__c, Request__c, Response__c, Error_Message__c, Created_Date__c
+
+Core Classes
+ExternalSystemNotifier.cls
+Handles outbound notifications to external systems for weather alerts and price changes, leveraging custom metadata for API configuration.
+StockPriceService.cls
+Manages stock price updates through API integration, featuring:
+
+Individual and batch stock updates
+Significant price change detection
+Comprehensive error handling and logging
+
+StockPriceUpdateScheduler.cls
+Scheduled Apex job that periodically updates all stock holdings with current market data.
+StockRestService.cls
+REST API implementation that allows external systems to:
+
+Retrieve stock holding information
+Create new stock holdings
+Includes proper request validation and error handling
+
+Implementation Highlights
+API Integration Best Practices
+
+Custom Metadata Types for configuration management
+Comprehensive exception handling
+Detailed request/response logging
+Timeout handling
+
+Security Features
+
+API key management
+Sensitive data redaction in logs
+Input validation
+
+Performance Considerations
+
+Batch processing for multiple records
+Graceful error handling to prevent batch failures
+
+Installation
+
+Deploy the following components:
+
+Apex Classes (ExternalSystemNotifier.cls, StockPriceService.cls, StockPriceUpdateScheduler.cls, StockRestService.cls)
+Custom Objects (Office_Location__c, Weather_Data__c, Stock_Holding__c, Integration_Log__c)
+Custom Metadata Type (API_Configuration__mdt)
+
+
+Configure API settings in Custom Metadata:
+
+Create records for Notification_API and Stock_API
+Set Base_URL__c, API_Key__c, and Timeout__c values
+
+
+Schedule the stock price update job:
+
+apexCopyString cronExp = '0 0 18 * * ?'; // Daily at 6 PM
+System.schedule('Daily Stock Updates', cronExp, new StockPriceUpdateScheduler());
+Usage Examples
+Getting Current Stock Price
+apexCopyMap<String, Object> stockData = StockPriceService.getStockPrice(holdingId);
+Creating a REST API Request
+httpCopyPOST /services/apexrest/stocks/v1
+Content-Type: application/json
+
+{
+  "portfolioId": "a01xx0000012gZZAAA",
+  "symbol": "AAPL",
+  "companyName": "Apple Inc.",
+  "quantity": 100,
+  "purchasePrice": 150.25
+}
+License
+MIT License

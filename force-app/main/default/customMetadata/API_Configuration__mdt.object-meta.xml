@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Configuration for external API integrations</description>
+    <fields>
+        <fullName>API_Type__c</fullName>
+        <label>API Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Notification_API</fullName>
+                    <default>true</default>
+                    <label>Notification API</label>
+                </value>
+                <value>
+                    <fullName>Stock_API</fullName>
+                    <label>Stock API</label>
+                </value>
+                <value>
+                    <fullName>Weather_API</fullName>
+                    <label>Weather API</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Base_URL__c</fullName>
+        <label>Base URL</label>
+        <type>Url</type>
+        <length>255</length>
+    </fields>
+    <fields>
+        <fullName>API_Key__c</fullName>
+        <label>API Key</label>
+        <type>EncryptedText</type>
+        <length>255</length>
+    </fields>
+    <fields>
+        <fullName>Timeout__c</fullName>
+        <label>Timeout (seconds)</label>
+        <type>Number</type>
+        <precision>18</precision>
+        <scale>0</scale>
+        <defaultValue>30</defaultValue>
+    </fields>
+    <label>API Configuration</label>
+    <pluralLabel>API Configurations</pluralLabel>
+</CustomObject>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Stores weather conditions for office locations</description>
+    <fields>
+        <fullName>Office_Location__c</fullName>
+        <label>Office Location</label>
+        <type>Lookup</type>
+        <referenceTo>Office_Location__c</referenceTo>
+        <required>true</required>
+    </fields>
+    <fields>
+        <fullName>Temperature__c</fullName>
+        <label>Temperature</label>
+        <type>Number</type>
+        <precision>18</precision>
+        <scale>2</scale>
+    </fields>
+    <fields>
+        <fullName>Weather_Condition__c</fullName>
+        <label>Weather Condition</label>
+        <type>Text</type>
+        <length>255</length>
+    </fields>
+    <fields>
+        <fullName>Humidity__c</fullName>
+        <label>Humidity</label>
+        <type>Number</type>
+        <precision>18</precision>
+        <scale>2</scale>
+    </fields>
+    <fields>
+        <fullName>Wind_Speed__c</fullName>
+        <label>Wind Speed</label>
+        <type>Number</type>
+        <precision>18</precision>
+        <scale>2</scale>
+    </fields>
+    <fields>
+        <fullName>Last_Updated__c</fullName>
+        <label>Last Updated</label>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Weather_Date__c</fullName>
+        <label>Weather Date</label>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Is_Extreme_Weather__c</fullName>
+        <label>Is Extreme Weather</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <label>Weather Data</label>
+    <pluralLabel>Weather Data</pluralLabel>
+</CustomObject>
